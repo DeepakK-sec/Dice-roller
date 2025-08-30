@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Dice Roller</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: system-ui, sans-serif;
+      background: #0b0f14;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+    .container {
+      text-align: center;
+    }
+    h1 {
+      margin-bottom: 1rem;
+    }
+    .dice-area {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin: 1rem 0;
+    }
+    .die {
+      width: 80px;
+      height: 80px;
+      background: #fff;
+      border-radius: 12px;
+      display: grid;
+      place-items: center;
+      font-size: 2rem;
+      color: #000;
+      box-shadow: 0 4px 10px rgba(0,0,0,.4);
+    }
+    button {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 6px;
+      background: #7cc5ff;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    button:hover {
+      background: #5bb3ff;
+    }
+    .result {
+      margin-top: 1rem;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🎲 Dice Roller</h1>
+    <button id="rollBtn">Roll Dice</button>
+    <div class="dice-area" id="dice"></div>
+    <div class="result" id="result">Total: –</div>
+  </div>
+
+  <script>
+    const diceEl = document.getElementById('dice');
+    const resultEl = document.getElementById('result');
+    const rollBtn = document.getElementById('rollBtn');
+
+    function rollDice(count = 2, sides = 6) {
+      diceEl.innerHTML = '';
+      let total = 0;
+
+      for (let i = 0; i < count; i++) {
+        const value = Math.floor(Math.random() * sides) + 1;
+        total += value;
+
+        const die = document.createElement('div');
+        die.className = 'die';
+        die.textContent = value;
+        diceEl.appendChild(die);
+      }
+
+      resultEl.textContent =
